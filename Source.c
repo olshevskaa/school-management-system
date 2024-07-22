@@ -30,9 +30,36 @@ Student* createStudent() {
   scanf("%s", newStudent->name);
 
   printf("Enter student id: ");
-  scanf("%s", newStudent->id);
+  scanf("%u", newStudent->id);
 
   return newStudent;
+}
+
+Course* createCourse() {
+  Course* newCourse = (Course*)malloc(sizeof(Course));
+  if(newCourse == NULL) {
+    printf("Something went wrong");
+    exit(1);
+  }
+
+  printf("Enter course name: ");
+  scanf("%s", newCourse->name);
+
+  printf("Enter number of students: ");
+  scanf("%u", newCourse->totalStudents);
+
+  newCourse->studentList = (Student*)malloc(sizeof(Student) * newCourse->totalStudents);
+  if(newCourse->studentList == NULL) {
+    printf("Something went wrong");
+    exit(1);
+  }
+
+  for(int i = 0; i < newCourse->totalStudents; i++) {
+    printf("Enter details for student #%d\n", i + 1);
+    Student* newStudent = createStudent();
+    newCourse->studentList[i] = *newStudent;
+    free(newStudent);
+  }
 }
 
 int main() {
