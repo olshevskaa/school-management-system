@@ -40,6 +40,16 @@ Student* createStudent() {
   return newStudent;
 }
 
+void updateAverageGrade(Course* course) {
+  double totalGrades = 0;
+  for (int i = 0; i < course->totalStudents; i++)
+  {
+    totalGrades += course->studentList[i].grade;
+  }
+
+  course->averageGrade = totalGrades / course->totalStudents;
+}
+
 Course* createCourse() {
   Course* newCourse = (Course*)malloc(sizeof(Course));
   if(newCourse == NULL) {
@@ -65,6 +75,7 @@ Course* createCourse() {
     newCourse->studentList[i] = *newStudent;
     free(newStudent);
   }
+  updateAverageGrade(newCourse);
 }
 
 School* createSchool() {
