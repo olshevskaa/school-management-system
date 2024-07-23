@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>>
+#include <stdlib.h>
 
 typedef struct student {
   char name[20];
@@ -87,6 +87,35 @@ School* createSchool() {
     Course* newCourse = createCourse();
     newSchool->courses[i] = *newCourse;
     free(newCourse);
+  }
+}
+
+void printStudentDetails(Student* student) {
+  printf("Student name: %s\n", student->name);
+  printf("Student ID: %u\n", student->id);
+}
+
+void printCourseDetails(Course* course) {
+  printf("Course name: %s\n", course->name);
+  printf("Course Average Grade: %lf\n", course->averageGrade);
+  printf("Course Total Students: %u\n", course->totalStudents);
+  for (int i = 0; i < course->totalStudents; i++)
+  {
+    printf("Details for student #%d:\n", i + 1);
+    printStudentDetails(&(course->studentList[i]));
+  }
+}
+
+void printStudentCourses(School* school, int studentID) {
+  printf("Courses for student with ID %d:\n", studentID);
+  for(int i = 0; i < school->totalCourses; i++) {
+    Course course = school->courses[i];
+    for(int j = 0; j < course.totalStudents; j++) {
+      if(course.studentList[j].id == studentID) {
+        printf(" - %s\n", course.name);
+        break;
+      }
+    }
   }
 }
 
