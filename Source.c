@@ -124,6 +124,77 @@ void printStudentCourses(School* school, int studentID) {
   }
 }
 
+void printStudentsWhoFailed(Course* course, int cutOffGrade) {
+  printf("Students who failed in %s:\n");
+
+  for (int i = 0; i < course->totalStudents; i++)
+  {
+    if(course->studentList[i].grade < cutOffGrade) {
+      printStudentDetails(&(course->studentList[i]));
+    }
+  }
+}
+
+void printStudentWhoPassed(Course* course, int cutOffGrade) {
+  printf("Students who passed in %s:\n");
+
+  for (int i = 0; i < course->totalStudents; i++)
+  {
+    if(course->studentList[i].grade >= cutOffGrade) {
+      printStudentDetails(&(course->studentList[i]));
+    }
+  }
+}
+
+void printCoursesWithPassAverageGrade(School* school, double cutOffGrade) {
+  printf("Courses with pass average grade:\n");
+
+  for (int i = 0; i < school->totalCourses; i++)
+  {
+    if(school->courses[i].averageGrade >= cutOffGrade) {
+      printCourseDetails(&(school->courses[i]));
+    }
+  }
+}
+
+void printCoursesWithFailAverageGrade(School* school, double cutOffGrade) {
+  printf("Courses with fail average grade:\n");
+
+  for (int i = 0; i < school->totalCourses; i++)
+  {
+    if(school->courses[i].averageGrade < cutOffGrade) {
+      printCourseDetails(&(school->courses[i]));
+    }
+  }
+}
+
+void printAverageGradeBetweenAllCourses(School* school) {
+  double totalGrade = 0.0;
+
+  for (int i = 0; i < school->totalCourses; i++)
+  {
+    totalGrade += school->courses[i].averageGrade;
+  }
+
+  double average = totalGrade / school->totalCourses;
+  printf("Average grade for all courses is %.2lf", average);
+}
+
+void printCourseWithHighestGrade(School* school) {
+  Course* course = NULL;
+
+  for (int i = 0; i < school->totalCourses; i++)
+  {
+    if(course == NULL || school->courses[i].averageGrade > course->averageGrade) {
+      course = &(school->courses[i]);
+    }
+  }
+
+  printf("Course with the highest average grade:\n");
+  printCourseDetails(course);
+  
+}
+
 int main() {
   return 0;
 }
