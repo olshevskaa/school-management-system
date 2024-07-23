@@ -4,6 +4,7 @@
 typedef struct student {
   char name[20];
   unsigned int id;
+  unsigned int grade;
 } Student;
 
 typedef struct course {
@@ -32,6 +33,9 @@ Student* createStudent() {
 
   printf("Enter student id: ");
   scanf("%u", newStudent->id);
+
+  printf("Enter student grade: ");
+  scanf("%u", newStudent->grade);
 
   return newStudent;
 }
@@ -92,6 +96,7 @@ School* createSchool() {
 
 void printStudentDetails(Student* student) {
   printf("Student name: %s\n", student->name);
+  printf("Student grade: %u\n", student->grade);
   printf("Student ID: %u\n", student->id);
 }
 
