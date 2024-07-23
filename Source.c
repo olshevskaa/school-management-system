@@ -76,6 +76,7 @@ Course* createCourse() {
     free(newStudent);
   }
   updateAverageGrade(newCourse);
+  return newCourse;
 }
 
 School* createSchool() {
@@ -103,6 +104,7 @@ School* createSchool() {
     newSchool->courses[i] = *newCourse;
     free(newCourse);
   }
+  return newSchool;
 }
 
 void printStudentDetails(Student* student) {
