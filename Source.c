@@ -230,6 +230,18 @@ void printSchoolDetails(School* school) {
   }
 }
 
+void upgradeStudentGrade(Course* course, unsigned int studentID, unsigned int newGrade) {
+  for (int i = 0; i < course->totalStudents; i++)
+  {
+    if(course->studentList[i].id == studentID) {
+      course->studentList[i].grade = newGrade;
+      updateAverageGrade(course);
+      return;
+    }
+  }
+  printf("Student was not found");
+}
+
 int main() {
   School* mySchool = createSchool();
   printCourseDetails(&(mySchool->courses[0]));
