@@ -223,6 +223,13 @@ void deleteSchool(School* school) {
   free(school);
 }
 
+void printSchoolDetails(School* school) {
+  for (int i = 0; i < school->totalCourses; i++)
+  {
+    printCourseDetails(&(school->courses[i]));
+  }
+}
+
 int main() {
   School* mySchool = createSchool();
   printCourseDetails(&(mySchool->courses[0]));
