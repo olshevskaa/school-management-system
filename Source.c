@@ -212,6 +212,17 @@ void printCourseWithHighestGrade(School* school) {
   printCourseDetails(course);
 }
 
+void deleteSchool(School* school) {
+  for (int i = 0; i < school->totalCourses; i++)
+  {
+    Course* course = &(school->courses[i]);
+    free(course->studentList);
+  }
+
+  free(school->totalCourses);
+  free(school);
+}
+
 int main() {
   School* mySchool = createSchool();
   printCourseDetails(&(mySchool->courses[0]));
