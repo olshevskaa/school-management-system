@@ -76,6 +76,7 @@ Course* createCourse() {
     free(newStudent);
   }
   updateAverageGrade(newCourse);
+  printf("-------------\n");
   return newCourse;
 }
 
@@ -104,6 +105,7 @@ School* createSchool() {
     newSchool->courses[i] = *newCourse;
     free(newCourse);
   }
+  printf("-------------\n");
   return newSchool;
 }
 
@@ -115,13 +117,14 @@ void printStudentDetails(Student* student) {
 
 void printCourseDetails(Course* course) {
   printf("Course name: %s\n", course->name);
-  printf("Course Average Grade: %lf\n", course->averageGrade);
+  printf("Course Average Grade: %.2lf\n", course->averageGrade);
   printf("Course Total Students: %u\n", course->totalStudents);
   for (int i = 0; i < course->totalStudents; i++)
   {
     printf("Details for student #%d:\n", i + 1);
     printStudentDetails(&(course->studentList[i]));
   }
+  printf("-------------\n");
 }
 
 void printStudentCourses(School* school, int studentID) {
@@ -135,6 +138,7 @@ void printStudentCourses(School* school, int studentID) {
       }
     }
   }
+  printf("-------------\n");
 }
 
 void printStudentsWhoFailed(Course* course, int cutOffGrade) {
@@ -191,6 +195,7 @@ void printAverageGradeBetweenAllCourses(School* school) {
 
   double average = totalGrade / school->totalCourses;
   printf("Average grade for all courses is %.2lf", average);
+  printf("-------------\n");
 }
 
 void printCourseWithHighestGrade(School* school) {
@@ -209,5 +214,8 @@ void printCourseWithHighestGrade(School* school) {
 
 int main() {
   School* mySchool = createSchool();
+  printCourseDetails(&(mySchool->courses[0]));
+  printCoursesWithPassAverageGrade(mySchool, 70);
+  printStudentWhoPassed(&(mySchool->courses[0]), 70);
   return 0;
 }
