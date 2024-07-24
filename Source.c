@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
 
 typedef struct student {
   char name[20];
@@ -240,6 +242,16 @@ void upgradeStudentGrade(Course* course, unsigned int studentID, unsigned int ne
     }
   }
   printf("Student was not found");
+}
+
+bool checkIfCourseIsInSchool(School* school, char* courseName) {
+  for (int i = 0; i < school->totalCourses; i++)
+  {
+    if(strcmp(school->courses[i].name, courseName) == 0) {
+      return true;
+    }
+  }
+  return false;
 }
 
 int main() {
