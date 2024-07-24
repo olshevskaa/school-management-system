@@ -254,6 +254,10 @@ bool checkIfCourseIsInSchool(School* school, char* courseName) {
   return false;
 }
 
+void updateCourseName(Course* course, char* newName) {
+  strcpy(course->name, newName);
+}
+
 int main() {
   School* mySchool = createSchool();
   printCourseDetails(&(mySchool->courses[0]));
