@@ -32,10 +32,10 @@ Student* createStudent() {
   scanf("%s", newStudent->name);
 
   printf("Enter student id: ");
-  scanf("%u", newStudent->id);
+  scanf("%u", &(newStudent->id));
 
   printf("Enter student grade: ");
-  scanf("%u", newStudent->grade);
+  scanf("%u", &(newStudent->grade));
 
   return newStudent;
 }
@@ -61,7 +61,7 @@ Course* createCourse() {
   scanf("%s", newCourse->name);
 
   printf("Enter number of students: ");
-  scanf("%u", newCourse->totalStudents);
+  scanf("%u", &(newCourse->totalStudents));
 
   newCourse->studentList = (Student*)malloc(sizeof(Student) * newCourse->totalStudents);
   if(newCourse->studentList == NULL) {
@@ -90,7 +90,7 @@ School* createSchool() {
   scanf("%s", newSchool->name);
 
   printf("Enter number of courses: ");
-  scanf("%u", newSchool->totalCourses);
+  scanf("%u", &(newSchool->totalCourses));
 
   newSchool->courses = (Course*)malloc(sizeof(Course) * newSchool->totalCourses);
   if(newSchool->courses == NULL) {
@@ -205,9 +205,9 @@ void printCourseWithHighestGrade(School* school) {
 
   printf("Course with the highest average grade:\n");
   printCourseDetails(course);
-  
 }
 
 int main() {
+  School* mySchool = createSchool();
   return 0;
 }
